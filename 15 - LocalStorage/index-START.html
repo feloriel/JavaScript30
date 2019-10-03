@@ -72,18 +72,26 @@
     populateList(items, itemsList);
   }
 
-  function deleteAll(e) {
+  function deleteAll() {
     items.splice(0);
     localStorage.setItem('items', JSON.stringify(items));
     populateList(items, itemsList);
   }
 
-  function checkAll(e) {
-    console.log(e);
+  function checkAll() {
+    items.forEach(item => { item.done = true; });
+    populateList(items, itemsList);
   }
 
   function uncheckAll(e) {
-    console.log(e);
+    items.forEach(item => { item.done = false; });
+    populateList(items, itemsList);
+  }
+
+  function setChecked(plates = [], isChecked) {
+    return plates.map(plate => {
+      return plate.done = isChecked;
+    });
   }
 
   addItems.addEventListener('submit', addItem);
@@ -92,12 +100,6 @@
   checkBtn.addEventListener('click', checkAll);
   uncheckBtn.addEventListener('click', uncheckAll);
   populateList(items, itemsList);
-
-  // TO DO:
-  // Make a buttons 
-  // 1. Clear All - Delete items
-  // 2. Check All - Check all items
-  // 3. Uncheck All - Uncheck all items
 
 </script>
 
